@@ -44,6 +44,7 @@ Hardhat deploy, verify and test enviroment
     Each payment is gonna be paid in native currency of chain,
     but if currency is setted to usd or eur, payment amount is gonna
     be counted by currency/native currency rate
+    
     6) keeperCompatible if true, every month contract will be 
     checked and if payment is available, will run it automatically
 
@@ -52,6 +53,7 @@ Hardhat deploy, verify and test enviroment
 
 #### How to make contract active?
     To become active, employee should call "sign" function
+    It will emits event "ContractSigned"
 #### How much do I need to fund?
     Each jobOffer requires start fund on 3 * amount for the SALARY
     type and for 528 * amount for the HOURLY type, you can count
@@ -81,27 +83,28 @@ Hardhat deploy, verify and test enviroment
 
 #### How to initiate payment?
 ##### SALARY
-    Employer should call payMonthly function
+    Employer should call "payMonthly" function
 ##### HOURLY 
-    Employee should add his worked hours with setWorkedHours 
+    Employee should add his worked hours with "setWorkedHours" 
     function
     
-    Then employee should call payWorkedHours function
+    Then employee should call "payWorkedHours" function
 
 #### How to close contract?
     To close contract, employee or employer should call "close" function
+    It will emits event "ContractClosed"
 
 #### What do I need to do with funds in closed contract? 
 ##### SALARY 
-    Employer can call withdraw function to withdraw all remaining funds 
-    from closed contract
+    Employer can call "withdraw" function to withdraw all remaining funds 
+    from the closed contract
 ##### HOURLY
-    Employee can call payWorkedHours function to pay his remaining hours, 
-    but he can't call setWorkedHours anymore
+    Employee can call "payWorkedHours" function to pay his remaining hours, 
+    but he can't call "setWorkedHours" anymore
     After all hours has been paid, employer can withdraw all remaining funds
 
 #### How can I withdraw funds from JobOfferFactory?
-    If all your contracts closed, you can call withdraw function to withdraw your funds
+    If all your contracts closed, you can call "withdraw" function to withdraw your funds
 
 
 
